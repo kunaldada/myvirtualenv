@@ -18,3 +18,14 @@ class Book(models.Model):
     authors = models.ManyToManyField(Author)
     publisher = models.ForeignKey(Publisher)
     publication_date = models.DateField()
+
+class FoodItems(models.Model):
+    desc = models.CharField(max_length=300)
+    image = models.URLField()
+    def __str__(self):
+      return self.desc
+    def json(self):
+        return{
+            'desc': self.desc,
+            'image_url': self.image,
+        }

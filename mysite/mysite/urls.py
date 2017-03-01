@@ -15,10 +15,12 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from mysite.views import hello, current_datetime, hours_ahead, dummy_view
+from books.views import getObject
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^hello/$', hello),	
     url(r'^time/$', current_datetime),
     url(r'^dummyview/$', dummy_view),
     url(r'^time/plus/(\d{1,2})/$', hours_ahead),
+    url(r'^get_obj/$', getObject),
 ]
