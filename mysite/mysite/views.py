@@ -40,3 +40,16 @@ def hours_ahead(request, offset):
 
 def dummy_view(request):
     return render(request, 'mainpage.html', {'name': "Kunal"})
+
+
+def month_archive(request, year, month):
+    html = "Year is %s and month is %s." % (year, month)
+    return HttpResponse(html)    
+
+def review_detail(request, year, month, day):
+    html = "Year is %s and month is %s and day is %s." % (year, month, day)
+    return HttpResponse(html) 
+
+def reports(request, id):
+    html = "In %s hour(s), it will be 24." % (id)
+    return HttpResponse(html)

@@ -14,13 +14,23 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from mysite.views import hello, current_datetime, hours_ahead, dummy_view
+#from mysite.views import hello, current_datetime, hours_ahead, dummy_view
+from . import views
+from . import views as credit_views
 from books.views import getObject
+
+extra_patterns = [
+    url(r'^reports/(?P<id>[0-9]{1})/$', credit_views.reports),
+]
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^hello/$', hello),	
-    url(r'^time/$', current_datetime),
-    url(r'^dummyview/$', dummy_view),
-    url(r'^time/plus/(\d{1,2})/$', hours_ahead),
+    url(r'^hello/$', views.hello),	
+    url(r'^time/$', views.current_datetime),
+    url(r'^dummyview/$', views.dummy_view),
+    url(r'^time/plus/(\d{1,2})/$', views.hours_ahead),
     url(r'^get_obj/$', getObject),
+    url(r'^reviews/([0-9]{4})/([0-9]{2})/$', views.month_archive),
+    url(r'^reviews/(?P<year>[0-9]{4})/(?P<month>[0-9]{2})/(?P<day>[0-9]{2})/$',views.review_detail),
+    url(r'^credit/', include(extra_patterns)),
 ]
